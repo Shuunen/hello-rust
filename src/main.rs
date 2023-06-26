@@ -37,10 +37,11 @@ fn main() {
     } else {
         println!("Please provide an argument");
     }
-    let person = create_person(42);
-    println!("Hello, {:?} :)", person);
-    let person = create_person(51);
-    println!("Hello, {:?} :)", person);
+    let personA = create_person(42);
+    println!("Hello, {:?} :)", personA);
+    let personB = create_person(51);
+    println!("Hello, {:?} :)", personB);
+    assert!(personB != personA);
 }
 
 #[cfg(test)]
