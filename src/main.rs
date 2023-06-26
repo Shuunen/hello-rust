@@ -1,3 +1,6 @@
+mod persons;
+use persons::Person;
+
 use std::{env};
 
 /*
@@ -20,12 +23,24 @@ fn hello(name: &str) {
     println!("output.txt created or overwritten");
 }
 
+fn create_person(age: u8) -> Person {
+    let name = "toto";
+    return Person {
+        name,
+        age,
+    };
+}
+
 fn main() {
     if let Some(name) = env::args().nth(1) {
         hello(&name);
     } else {
         println!("Please provide an argument");
     }
+    let person = create_person(42);
+    println!("Hello, {:?} :)", person);
+    let person = create_person(51);
+    println!("Hello, {:?} :)", person);
 }
 
 #[cfg(test)]
