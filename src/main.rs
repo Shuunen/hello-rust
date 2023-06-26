@@ -1,16 +1,22 @@
-use std::env;
+use std::{env};
+
+/*
+    - Découper le code
+    - Voir la déclaration de contract (struct, enum, trait, impl)
+    - Benchmarks
+    - Connection avec une DB
+*/
+
+fn get_output(name: &str) -> String {
+    let now = chrono::Local::now().format("%d/%m/%Y %H:%M");
+    return format!("Hello, {} :)\n\nThe date and time is: {}", name, now);
+}
 
 fn hello(name: &str) {
-    let mut output = format!("\nHello, {} :)\n", name);
-    // add the date and time to the output
-    output.push_str(&format!(
-        "\nThe date and time is: {}\n",
-        chrono::offset::Local::now()
-    ));
-    // print the output to the terminal
+    let output = get_output(name);
     println!("{}", &output);
     // write the output to a file
-    std::fs::write("output.txt", output);
+    std::fs::write("output.txt", output).unwrap();
     println!("output.txt created or overwritten");
 }
 
@@ -19,5 +25,15 @@ fn main() {
         hello(&name);
     } else {
         println!("Please provide an argument");
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{get_output};
+
+    #[test]
+    fn test_get_output() {
+        assert!(get_output("toto").contains("toto"));
     }
 }
